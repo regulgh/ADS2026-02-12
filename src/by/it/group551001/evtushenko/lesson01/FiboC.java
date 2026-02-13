@@ -1,5 +1,7 @@
 package by.it.group551001.evtushenko.lesson01;
 
+import java.util.ArrayList;
+
 /*
  * Даны целые числа 1<=n<=1E18 и 2<=m<=1E5,
  * необходимо найти остаток от деления n-го числа Фибоначчи на m
@@ -24,9 +26,20 @@ public class FiboC {
     long fasterC(long n, int m) {
         //Интуитивно найти решение не всегда просто и
         //возможно потребуется дополнительный поиск информации
-        return -1L;
-    }
+        
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        a.add(0);
+        a.add(1);
 
+        int i;
+        for(i = 0;;++i){
+            a.add((a.get(a.size() - 1) + (a.get(a.size() - 2))) % m);
+
+            if(a.get(a.size() - 1) == 0 && a.get(a.size() - 2) == 1) break;
+        }
+
+        return a.get((int) (n % (i + 2)));
+    }
 
 }
 
